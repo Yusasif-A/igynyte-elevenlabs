@@ -11,6 +11,7 @@ fraud team. Every call is recorded, transcribed and evaluated.
 
 | What you're looking for | Link |
 |---|---|
+| **Demo video** (4.5 min): a full call, from held payment to frozen card | **https://noba-bank.web.app/demo** |
 | **Live demo**: pay, then take the bank's call in your browser | **https://noba-bank.web.app** |
 | **Agent Testing suite and pass rate** (12 tests × 3 runs, tool-call tests on high-stakes actions) | [evidence/agent_tests.md](evidence/agent_tests.md) |
 | Same suite on a second model (claude-haiku-5-5) | [evidence/agent_tests_claude-haiku-5-5.md](evidence/agent_tests_claude-haiku-5-5.md) |
@@ -158,7 +159,7 @@ Eleven v3 and the multilingual embeddings already cover it.
 | `el_prompts.py` | System prompt, EN/AR opening lines, policy documents |
 | `el_evals.py` | Agent Testing, Simulate Conversations, conversation export |
 | `el_dashboard.py` | The operations page: checkout, call panel, bank view, audit trail (HTML) |
-| `build_web.py`, `web/` | Builds and configures the Firebase Hosting copy of the page (`noba-bank`) |
+| `build_web.py`, `web/` | Builds and configures the Firebase Hosting site (`noba-bank`): the page, and `/demo`, which plays the demo video (the video is hosted there, not in git) |
 | `el_client.py` | ElevenLabs API calls, state file, webhook signature check |
 | `el_caller.py` | Phone call for a stored fraud signal (needs a phone number) |
 | `bank_api.py`, `bank_data.py` | Simulated core banking, with human-only operations |

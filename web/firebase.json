@@ -4,6 +4,7 @@
     "ignore": ["firebase.json", "**/.*"],
     "cleanUrls": true,
     "rewrites": [
+      { "source": "/demo", "destination": "/demo.html" },
       { "source": "/checkout", "destination": "/index.html" },
       { "source": "/ui", "destination": "/console.html" },
       { "source": "/ui/**", "destination": "/console.html" }
@@ -16,6 +17,10 @@
       {
         "source": "**/*.html",
         "headers": [{ "key": "Cache-Control", "value": "no-cache" }]
+      },
+      {
+        "source": "/media/**",
+        "headers": [{ "key": "Cache-Control", "value": "public, max-age=86400" }]
       }
     ]
   }
