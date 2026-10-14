@@ -1,0 +1,22 @@
+{
+  "hosting": {
+    "public": "public",
+    "ignore": ["firebase.json", "**/.*"],
+    "cleanUrls": true,
+    "rewrites": [
+      { "source": "/checkout", "destination": "/index.html" },
+      { "source": "/ui", "destination": "/console.html" },
+      { "source": "/ui/**", "destination": "/console.html" }
+    ],
+    "headers": [
+      {
+        "source": "/config.js",
+        "headers": [{ "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate" }]
+      },
+      {
+        "source": "**/*.html",
+        "headers": [{ "key": "Cache-Control", "value": "no-cache" }]
+      }
+    ]
+  }
+}

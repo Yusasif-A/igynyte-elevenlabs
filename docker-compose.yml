@@ -1,0 +1,22 @@
+services:
+  noba:
+    build: .
+    container_name: noba
+    restart: unless-stopped
+    ports:
+      # Only the host's reverse proxy talks to it: https://comnote.publicaai.com/noba
+      - "127.0.0.1:3090:8080"
+    environment:
+      # nginx strips /noba before forwarding; the app adds it back to the links
+      # and fetch() calls in its pages.
+      ROOT_PATH: /noba
+    volumes:
+      - ./.env:/app/.env:ro
+      - ./.elevenlabs_state.json:/app/.elevenlabs_state.json
+      - ./audit:/app/audit
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8080/health')"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 20s

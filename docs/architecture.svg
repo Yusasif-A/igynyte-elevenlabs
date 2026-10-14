@@ -1,0 +1,181 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 900" width="1400" height="900" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#4a5560"/>
+    </marker>
+    <marker id="r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#c62828"/>
+    </marker>
+    <style>
+      .t { font-size:15px; font-weight:700; fill:#14171a; }
+      .h { font-size:13px; font-weight:700; fill:#14171a; }
+      .s { font-size:12px; fill:#3b444d; }
+      .m { font-size:11px; fill:#69737d; }
+      .k { font-size:11px; font-weight:700; letter-spacing:.06em; fill:#69737d; }
+      .w { font-size:12px; fill:#ffffff; }
+      .wh { font-size:13px; font-weight:700; fill:#ffffff; }
+      .ln { stroke:#4a5560; stroke-width:1.6; fill:none; marker-end:url(#a); }
+      .lr { stroke:#c62828; stroke-width:1.6; fill:none; marker-end:url(#r); stroke-dasharray:5 4; }
+    </style>
+  </defs>
+
+  <rect width="1400" height="900" fill="#f6f7f9"/>
+  <text x="40" y="44" style="font-size:24px;font-weight:800;fill:#14171a">Real-Time Fraud Intervention · architecture</text>
+  <text x="40" y="68" class="s">① payment held while still stoppable  →  ② agent dialled with the briefing  →  ③ voice call in English or Arabic  →  ④ bank tools, gated  →  ⑤ recording + evaluation to audit  ·  ⑥ hand-over to a person</text>
+
+  <!-- ========== LEFT: customer side ========== -->
+  <text x="40" y="112" class="k">CUSTOMER</text>
+  <rect x="40" y="122" width="250" height="96" rx="12" fill="#fff" stroke="#e3e7eb"/>
+  <text x="58" y="148" class="h">Merchant checkout</text>
+  <text x="58" y="168" class="s">/checkout · shopper pays $250</text>
+  <text x="58" y="186" class="s">at a Kyiv store with a card</text>
+  <text x="58" y="204" class="s">only ever used in Nigeria</text>
+
+  <rect x="40" y="250" width="250" height="118" rx="12" fill="#fff" stroke="#e3e7eb"/>
+  <text x="58" y="276" class="h">Cardholder</text>
+  <text x="58" y="296" class="s">Browser: "your bank is calling"</text>
+  <text x="58" y="314" class="s">→ WebRTC via @elevenlabs/client</text>
+  <text x="58" y="332" class="s">Phone: Twilio / SIP outbound</text>
+  <text x="58" y="350" class="s">(EN or AR, chosen per call)</text>
+
+  <rect x="40" y="400" width="250" height="86" rx="12" fill="#fff" stroke="#e3e7eb"/>
+  <text x="58" y="426" class="h">Human fraud team</text>
+  <text x="58" y="446" class="s">Live transfer (transfer_to_number)</text>
+  <text x="58" y="464" class="s">or case + call-back · WhatsApp report</text>
+
+  <!-- ========== CENTER: ElevenLabs ========== -->
+  <rect x="330" y="98" width="600" height="520" rx="16" fill="#0b1f3a"/>
+  <text x="352" y="128" class="wh" style="font-size:15px">ElevenLabs Agents platform</text>
+  <text x="352" y="146" class="w" style="fill:#9fb3cc">agent_8801m4vqe2y7f0rsfett1qm8weyg · trust_context: low · recording on</text>
+
+  <rect x="352" y="162" width="170" height="92" rx="10" fill="#16365f"/>
+  <text x="366" y="186" class="wh">Listening</text>
+  <text x="366" y="206" class="w">Scribe v2 Realtime</text>
+  <text x="366" y="224" class="w">keyterms: bank, brands,</text>
+  <text x="366" y="242" class="w">merchants, Arabic verbs</text>
+
+  <rect x="545" y="162" width="170" height="92" rx="10" fill="#16365f"/>
+  <text x="559" y="186" class="wh">Reasoning</text>
+  <text x="559" y="206" class="w">System prompt: call order</text>
+  <text x="559" y="224" class="w">opening line from dynamic</text>
+  <text x="559" y="242" class="w">variables (name, card)</text>
+
+  <rect x="738" y="162" width="170" height="92" rx="10" fill="#16365f"/>
+  <text x="752" y="186" class="wh">Voice</text>
+  <text x="752" y="206" class="w">Eleven v3 conversational</text>
+  <text x="752" y="224" class="w">EN "Hope" · AR "Sara"</text>
+  <text x="752" y="242" class="w">language_detection switch</text>
+
+  <rect x="352" y="272" width="263" height="104" rx="10" fill="#16365f"/>
+  <text x="366" y="296" class="wh">Knowledge base (RAG)</text>
+  <text x="366" y="316" class="w">FR-01 fraud response · FR-02 freeze</text>
+  <text x="366" y="334" class="w">FR-03 challenge flow · FR-04 hand-over</text>
+  <text x="366" y="352" class="w">each in EN + AR · cites policy id</text>
+
+  <rect x="633" y="272" width="275" height="104" rx="10" fill="#16365f"/>
+  <text x="647" y="296" class="wh">Guardrails (blocking, retry)</text>
+  <text x="647" y="316" class="w">never solicit a credential</text>
+  <text x="647" y="334" class="w">warn a caller who reads out a secret</text>
+  <text x="647" y="352" class="w">prompt-injection · focus</text>
+
+  <rect x="352" y="394" width="556" height="96" rx="10" fill="#16365f"/>
+  <text x="366" y="418" class="wh">Tools</text>
+  <text x="366" y="438" class="w">10 webhook tools (bearer secret; session_id + conversation_id bound to dynamic variables)</text>
+  <text x="366" y="456" class="w">ask/check security question · describe · freeze_card · approve · reduce limit · flag · open case · log</text>
+  <text x="366" y="474" class="w">system: end_call · language_detection · transfer_to_number (conference)</text>
+
+  <rect x="352" y="508" width="556" height="92" rx="10" fill="#16365f"/>
+  <text x="366" y="532" class="wh">Evaluation</text>
+  <text x="366" y="552" class="w">7 evaluation criteria · 6 data-collection fields · post-call webhook (HMAC, transcript + MP3)</text>
+  <text x="366" y="570" class="w">Agent Testing: 12 tests × 3 runs (tool-call tests on freeze / approve)</text>
+  <text x="366" y="588" class="w">Simulate Conversations: EN · Gulf Arabic · adversarial (PIN + refund)</text>
+
+  <!-- ========== RIGHT: bank side ========== -->
+  <text x="970" y="112" class="k">BANK (this repo)</text>
+  <rect x="970" y="122" width="390" height="368" rx="14" fill="#fff" stroke="#e3e7eb"/>
+  <text x="990" y="150" class="t">el_tools.py · tool server</text>
+  <text x="990" y="168" class="m">FastAPI, one worker, behind a public tunnel</text>
+
+  <rect x="990" y="182" width="350" height="62" rx="9" fill="#fff4ec" stroke="#ffd9bf"/>
+  <text x="1004" y="204" class="h">Payment trigger</text>
+  <text x="1004" y="222" class="s">card_authorization: foreign CNP + FX + &gt;½ limit</text>
+  <text x="1004" y="238" class="s">→ payment HELD, session briefed, call placed</text>
+
+  <rect x="990" y="254" width="350" height="98" rx="9" fill="#e9f6ef" stroke="#bfe5cf"/>
+  <text x="1004" y="276" class="h">Layer 2 · verification gate</text>
+  <text x="1004" y="294" class="s">ChallengeFlow: customer's own questions, 3 tries</text>
+  <text x="1004" y="312" class="s">no answer accepted to a question it didn't issue</text>
+  <text x="1004" y="330" class="s">describe → only after verified; freeze / approve</text>
+  <text x="1004" y="346" class="s">→ only after verified AND real details described</text>
+
+  <rect x="990" y="362" width="350" height="54" rx="9" fill="#eef1f4" stroke="#dde3e8"/>
+  <text x="1004" y="384" class="h">Custom-LLM proxy  /llm/v1</text>
+  <text x="1004" y="402" class="s">→ Gemma 4 26B (Publica) · fallback Haiku → Gemini</text>
+
+  <rect x="990" y="426" width="350" height="50" rx="9" fill="#eef1f4" stroke="#dde3e8"/>
+  <text x="1004" y="448" class="h">Audit  /webhooks/elevenlabs</text>
+  <text x="1004" y="466" class="s">signature-checked → audit/ (JSON + MP3)</text>
+
+  <rect x="970" y="510" width="390" height="108" rx="14" fill="#fff" stroke="#e3e7eb"/>
+  <text x="990" y="536" class="t">bank_api.py · core banking (simulated)</text>
+  <text x="990" y="558" class="h" style="fill:#c62828">Layer 3 · human-only operations refused for the agent</text>
+  <text x="990" y="578" class="s">reverse money · unfreeze · raise limit · close account</text>
+  <text x="990" y="596" class="s">change contact details — whatever the model asks for</text>
+
+  <!-- ========== BOTTOM: screens & evidence ========== -->
+  <rect x="40" y="660" width="420" height="200" rx="14" fill="#fff" stroke="#e3e7eb"/>
+  <text x="60" y="688" class="t">What people see</text>
+  <text x="60" y="712" class="s"><tspan font-weight="700">noba-bank.web.app</tspan> — one operations page:</text>
+  <text x="60" y="730" class="s">checkout (card, amount, country, EN/AR, browser or phone)</text>
+  <text x="60" y="748" class="s">→ "Call from the bank" panel: answer in-browser,</text>
+  <text x="60" y="766" class="s">live captions</text>
+  <text x="60" y="794" class="s">bank view: card status, held payment, agent progress</text>
+  <text x="60" y="812" class="s">(verified? attempts? actions), cases, audit trail with</text>
+  <text x="60" y="830" class="s">evaluation chips, recording and transcript</text>
+
+  <rect x="490" y="660" width="440" height="200" rx="14" fill="#fff" stroke="#e3e7eb"/>
+  <text x="510" y="688" class="t">The three safety layers</text>
+  <text x="510" y="714" class="s"><tspan font-weight="700">1 · Prompt + platform</tspan> — call order, AI disclosure,</text>
+  <text x="510" y="732" class="s">blocking credential guardrails, trust_context: low</text>
+  <text x="510" y="758" class="s"><tspan font-weight="700">2 · Tool server</tspan> — refuses to act before verification</text>
+  <text x="510" y="776" class="s">and before the real details were described; counts tries</text>
+  <text x="510" y="802" class="s"><tspan font-weight="700">3 · Bank API</tspan> — irreversible operations are human-only</text>
+  <text x="510" y="828" class="m">A model that ignores its instructions still cannot freeze a card</text>
+  <text x="510" y="844" class="m">for an unverified caller, or reverse a transaction at all.</text>
+
+  <rect x="960" y="660" width="400" height="200" rx="14" fill="#fff" stroke="#e3e7eb"/>
+  <text x="980" y="688" class="t">Evidence (evidence/)</text>
+  <text x="980" y="714" class="s">agent_tests.md — pass rate per test over 3 runs</text>
+  <text x="980" y="734" class="s">agent_tests_claude-haiku-5-5.md — same suite, Haiku</text>
+  <text x="980" y="754" class="s">conversations/sim_*.md — transcripts, tool calls,</text>
+  <text x="980" y="772" class="s">evaluation criteria with rationale, data collected</text>
+  <text x="980" y="792" class="s">conversations/live_*.md — real calls, exported</text>
+  <text x="980" y="812" class="s">with python el_evals.py --export-conversations</text>
+  <text x="980" y="840" class="m">Add a language: one preset, one voice, FR docs in it.</text>
+
+  <!-- ========== ARROWS (numbered as in the subtitle) ========== -->
+  <!-- 1: checkout -> payment trigger, routed above the platform -->
+  <path class="ln" d="M165,122 L165,86 L1320,86 L1320,180"/>
+  <!-- 2: bank briefs and dials the agent -->
+  <path class="ln" d="M990,214 L932,214"/>
+  <!-- 3: voice, both ways -->
+  <path class="ln" d="M292,309 L328,309" marker-start="url(#a)"/>
+  <!-- 4: agent's tools -> verification gate -->
+  <path class="ln" d="M930,440 C952,440 952,304 988,304"/>
+  <!-- 5: post-call webhook -> audit -->
+  <path class="ln" d="M930,560 C952,560 952,451 988,451"/>
+  <!-- 6: hand-over to people -->
+  <path class="lr" d="M330,443 L292,443"/>
+  <!-- tool server -> core banking -->
+  <path class="ln" d="M1165,490 L1165,508"/>
+
+  <g font-size="11" font-weight="700" text-anchor="middle">
+    <circle cx="660" cy="86" r="10" fill="#4a5560"/><text x="660" y="90" fill="#fff">1</text>
+    <circle cx="951" cy="214" r="10" fill="#4a5560"/><text x="951" y="218" fill="#fff">2</text>
+    <circle cx="310" cy="309" r="10" fill="#4a5560"/><text x="310" y="313" fill="#fff">3</text>
+    <circle cx="952" cy="372" r="10" fill="#4a5560"/><text x="952" y="376" fill="#fff">4</text>
+    <circle cx="952" cy="505" r="10" fill="#4a5560"/><text x="952" y="509" fill="#fff">5</text>
+    <circle cx="311" cy="443" r="10" fill="#c62828"/><text x="311" y="447" fill="#fff">6</text>
+  </g>
+  <text x="176" y="104" class="m">POST /api/payments/attempt</text>
+</svg>

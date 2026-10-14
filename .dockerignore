@@ -1,0 +1,10 @@
+.env
+.env.*
+.elevenlabs_state.json
+audit/
+dashboard/
+evidence/
+__pycache__/
+*.pyc
+.venv/
+start.ps1
