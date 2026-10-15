@@ -149,6 +149,11 @@ def main() -> None:
     demo = (DEMO_HTML.replace("__BANK_BRAND__", _brand())
                      .replace("__BANK_NAME__", settings.bank.name)
                      .replace("__REPO__", REPO))
+    if VIDEO.exists():
+        # The video is cached for a day; a version tag makes a replaced video
+        # show at once instead of the copy a browser already holds.
+        version = f"{int(VIDEO.stat().st_mtime)}-{VIDEO.stat().st_size}"
+        demo = demo.replace("/media/fraud-agent-demo.mp4", f"/media/fraud-agent-demo.mp4?v={version}")
     (PUBLIC / "demo.html").write_text(demo, encoding="utf-8")
     if VIDEO.exists():
         target = PUBLIC / "media" / VIDEO.name

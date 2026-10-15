@@ -11,7 +11,7 @@ fraud team. Every call is recorded, transcribed and evaluated.
 
 | What you're looking for | Link |
 |---|---|
-| **Demo video** (4.5 min): a full call, from held payment to frozen card | **https://noba-bank.web.app/demo** |
+| **Demo video** (about 5 min): a full call, from held payment to frozen card | **https://noba-bank.web.app/demo** |
 | **Live demo**: pay, then take the bank's call in your browser | **https://noba-bank.web.app** |
 | **Agent Testing suite and pass rate** (12 tests × 3 runs, tool-call tests on high-stakes actions) | [evidence/agent_tests.md](evidence/agent_tests.md) |
 | Same suite on a second model (claude-haiku-5-5) | [evidence/agent_tests_claude-haiku-5-5.md](evidence/agent_tests_claude-haiku-5-5.md) |
